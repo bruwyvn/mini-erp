@@ -6,7 +6,9 @@ classDiagram
     <<Model>>
     -uuid: uuid
     -name: string
+    -description: string
     -location: string
+    +getProducts(): Promise<Product[]>
   }
 
   class Product {

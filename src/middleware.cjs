@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+
 const config = require("./config.cjs");
 
 module.exports = (request, response, next) => {

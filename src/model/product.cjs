@@ -15,7 +15,6 @@ const Product = database.define("Product", {
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
 });
 

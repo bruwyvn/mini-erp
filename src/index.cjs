@@ -1,29 +1,44 @@
 const express = require("express");
+const Chance = require("chance");
 
-const routes = require("./routes.cjs");
 const port = require("./config.cjs").port;
+const routes = require("./routes.cjs");
+const createSku = require("./lib/create-sku.cjs");
 
 const Product = require("./model/product.cjs");
 const Inventory = require("./model/inventory.cjs");
 
 const app = express();
+const chance = new Chance();
 
 (async () => {
   await require("./database.cjs").sync({ alter: true });
 
+  const inventoryDescription = chance.sentence({ words: 3 }).replace(/\./g, "");
+
+  const address = chance.address();
+  const city = chance.city();
+  const state = chance.state();
+  const zip = chance.zip();
+  const country = chance.country({ full: true });
+
+  const product1Description = chance.sentence({ words: 5 }).replace(/\./g, "");
+  const product2Description = chance.sentence({ words: 5 }).replace(/\./g, "");
+
   const inventory = await Inventory.create({
-    name: "My Inventory",
-    location: "New York"
+    name: inventoryDescription.replace(/\s+/g, "-").toLowerCase(),
+    description: inventoryDescription,
+    location: `${address}\n${city}, ${state} ${zip}\n${country}`,
   });
 
   const product1 = await Product.create({
-    sku: "PRD-001",
-    description: "Product 1",
+    sku: createSku(product1Description),
+    description: product1Description,
   });
 
   const product2 = await Product.create({
-    sku: "PRD-002",
-    description: "Product 2",
+    sku: createSku(product2Description),
+    description: product2Description,
   });
 
   await inventory.addProduct(product1);

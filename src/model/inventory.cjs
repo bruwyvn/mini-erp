@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const database = require("../database.cjs");
-const Product = require("./product.cjs")
+const Product = require("./product.cjs");
 
 const Inventory = database.define("Inventory", {
   uuid: {
@@ -12,6 +12,10 @@ const Inventory = database.define("Inventory", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
+  },
+  description: {
+    type: DataTypes.STRING
   },
   location: {
     type: DataTypes.STRING,
@@ -19,8 +23,7 @@ const Inventory = database.define("Inventory", {
   },
 });
 
-
-Inventory.belongsToMany(Product, { through: 'InventoryProduct' });
-Product.belongsToMany(Inventory, { through: 'InventoryProduct' });
+Inventory.belongsToMany(Product, { through: "InventoryProduct" });
+Product.belongsToMany(Inventory, { through: "InventoryProduct" });
 
 module.exports = Inventory;
