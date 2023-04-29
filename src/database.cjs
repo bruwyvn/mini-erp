@@ -1,5 +1,6 @@
-const config = require("./config.cjs");
 const Sequelize = require("sequelize");
+
+const config = require("./config.cjs");
 
 const Database = new Sequelize(
   config.dbName,
