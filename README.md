@@ -19,6 +19,24 @@ To install the Mini-ERP application, follow these steps:
 2. Navigate to the project directory in your terminal.
 3. Run `pnpm install` to install the project dependencies.
 
+## Sequelize Dialects
+
+Before you can use Mini-ERP with a specific database dialect, you'll need to install the corresponding Sequelize dialect package.
+
+For example, if you want to use Mini-ERP with PostgreSQL, you'll need to install the `pg` and `pg-hstore` packages:
+
+```
+pnpm install --save pg pg-hstore
+```
+
+If you want to use Mini-ERP with MySQL, you'll need to install the `mysql2` package:
+
+```
+pnpm install --save mysql2
+```
+
+For a full list of supported Sequelize dialects and their corresponding packages, see the [Sequelize documentation](https://sequelize.org/).
+
 ## Configuration
 
 Before you can start the Mini-ERP application, you'll need to configure a few things.
@@ -57,7 +75,11 @@ If you want to start the application in development mode, run the following comm
 pnpm run dev
 ```
 
-## Diagrams
+This will start the application with nodemon, which will automatically restart the application whenever you make changes to the code.
+
+## Class Diagram
+
+The following diagram shows the relationship between the `Inventory` and `Product` classes:
 
 ```mermaid
 classDiagram
