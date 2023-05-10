@@ -33,6 +33,9 @@ devDependencies:
   eslint-config-prettier:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.40.0)
+  eslint-plugin-spellcheck:
+    specifier: ^0.0.20
+    version: 0.0.20(eslint@8.40.0)
   eslint-plugin-unicorn:
     specifier: ^47.0.0
     version: 47.0.0(eslint@8.40.0)
@@ -722,6 +725,17 @@ packages:
       eslint: 8.40.0
     dev: true
 
+  /eslint-plugin-spellcheck@0.0.20(eslint@8.40.0):
+    resolution: {integrity: sha512-GJa6vgzWAYqe0elKADAsiBRrhvqBnKyt7tpFSqlCZJsK2W9+K80oMyHhKolA7vJ13H5RCGs5/KCN+mKUyKoAiA==}
+    peerDependencies:
+      eslint: '>=0.8.0'
+    dependencies:
+      eslint: 8.40.0
+      globals: 13.20.0
+      hunspell-spellchecker: 1.0.2
+      lodash: 4.17.21
+    dev: true
+
   /eslint-plugin-unicorn@47.0.0(eslint@8.40.0):
     resolution: {integrity: sha512-ivB3bKk7fDIeWOUmmMm9o3Ax9zbMz1Bsza/R2qm46ufw4T6VBFBaJIR1uN3pCKSmSXm8/9Nri8V+iUut1NhQGA==}
     engines: {node: '>=16'}
@@ -1132,6 +1146,11 @@ packages:
   /human-signals@4.3.1:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
+    dev: true
+
+  /hunspell-spellchecker@1.0.2:
+    resolution: {integrity: sha512-4DwmFAvlz+ChsqLDsZT2cwBsYNXh+oWboemxXtafwKIyItq52xfR4e4kr017sLAoPaSYVofSOvPUfmOAhXyYvw==}
+    hasBin: true
     dev: true
 
   /husky@8.0.3:

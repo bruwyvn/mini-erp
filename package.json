@@ -1,12 +1,13 @@
 {
   "name": "mini-erp",
   "version": "0.0.0",
-  "description": "",
+  "description": "Simple enterprise resource planning application built with Node.js and the Sequelize ORM",
   "main": "src/index.cjs",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./src/index.cjs",
     "dev": "cross-env NODE_ENV=development nodemon ./src/index.cjs",
     "format": "pnpm run-script prettier --write",
+    "lint": "eslint --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --ignore-unknown \"!**/pnpm-lock.yaml\"",
     "prepare": "husky install"
   },
@@ -23,6 +24,7 @@
     "chance": "^1.1.11",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-spellcheck": "^0.0.20",
     "eslint-plugin-unicorn": "^47.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
@@ -34,7 +36,15 @@
     "extends": [
       "plugin:unicorn/recommended",
       "prettier"
-    ]
+    ],
+    "plugins": [
+      "spellcheck"
+    ],
+    "rules": {
+      "spellcheck/spell-checker": [
+        "warn"
+      ]
+    }
   },
   "prettier": {
     "semi": false,
