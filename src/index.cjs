@@ -1,12 +1,10 @@
 const express = require("express");
 const Chance = require("chance");
-
 const port = require("./config.cjs").port;
 const routes = require("./routes.cjs");
 const createSku = require("./lib/create-sku.cjs");
 
-const Product = require("./model/product.cjs");
-const Inventory = require("./model/inventory.cjs");
+const { Inventory, Product } = require('./model')
 
 const app = express();
 const chance = new Chance();
