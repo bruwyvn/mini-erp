@@ -21,18 +21,18 @@ To install the Mini-ERP application, follow these steps:
 
 ## Sequelize Dialects
 
-Before you can use Mini-ERP with a specific database dialect, you'll need to install the corresponding Sequelize dialect package.
+Before you can use Mini-ERP with a specific database dialect, you'll need to install the corresponding Sequelize dialect package globally using pnpm.
 
-For example, if you want to use Mini-ERP with PostgreSQL, you'll need to install the `pg` and `pg-hstore` packages:
-
-```
-pnpm install --save pg pg-hstore
-```
-
-If you want to use Mini-ERP with MySQL, you'll need to install the `mysql2` package:
+For example, if you want to use Mini-ERP with PostgreSQL, you'll need to install the `pg` and `pg-hstore` packages globally:
 
 ```
-pnpm install --save mysql2
+pnpm install -g pg pg-hstore
+```
+
+If you want to use Mini-ERP with MySQL, you'll need to install the `mysql2` package globally:
+
+```
+pnpm install -g mysql2
 ```
 
 For a full list of supported Sequelize dialects and their corresponding packages, see the [Sequelize documentation](https://sequelize.org/).
@@ -79,7 +79,7 @@ This will start the application with nodemon, which will automatically restart t
 
 ## Class Diagram
 
-The following diagram shows the relationship between the `Inventory` and `Product` classes:
+The following diagram shows the relationship between the Sequelize models:
 
 ```mermaid
 classDiagram
@@ -99,5 +99,11 @@ classDiagram
     -description: string
   }
 
-  Inventory "1" *-- "*" Product : contains
+  class InventoryProduct {
+        -createdAt: DATE
+        -updatedAt: DATE
+  }
+
+  Product "1" *-- "*" InventoryProduct
+  Inventory "1" *-- "*" InventoryProduct
 ```

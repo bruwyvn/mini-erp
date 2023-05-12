@@ -1,15 +1,20 @@
 {
   "name": "mini-erp",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple enterprise resource planning application built with Node.js and the Sequelize ORM",
+  "main": "src/index.cjs",
   "scripts": {
-    "start": "node ./src/index.cjs",
-    "dev": "nodemon ./src/index.cjs"
+    "start": "cross-env NODE_ENV=production node ./src/index.cjs",
+    "dev": "cross-env NODE_ENV=development nodemon ./src/index.cjs",
+    "format": "pnpm run-script prettier --write",
+    "lint": "eslint --ignore-path .gitignore",
+    "prettier": "prettier --ignore-path .gitignore --ignore-unknown \"!**/pnpm-lock.yaml\"",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
@@ -17,7 +22,41 @@
   },
   "devDependencies": {
     "chance": "^1.1.11",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-spellcheck": "^0.0.20",
+    "eslint-plugin-unicorn": "^47.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
     "sequelize-cli": "^6.6.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:unicorn/recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "spellcheck"
+    ],
+    "rules": {
+      "spellcheck/spell-checker": [
+        "warn"
+      ]
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "lint-staged": {
+    "*.**": "pnpm run-script format"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint-staged"
+    }
   }
 }
