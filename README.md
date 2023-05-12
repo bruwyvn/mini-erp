@@ -99,11 +99,46 @@ classDiagram
     -description: string
   }
 
+  class User {
+    <<Model>>
+    -uuid: uuid
+    -user: string
+    -email: string
+  }
+
+  class Role {
+    <<Model>>
+    -uuid: uuid
+    -name: string
+    -description: string
+  }
+
+  class Permission {
+    <<Model>>
+    -uuid: uuid
+    -name: string
+    -description: string
+  }
+
   class InventoryProduct {
-        -createdAt: DATE
-        -updatedAt: DATE
+    -createdAt: DATE
+    -updatedAt: DATE
+  }
+
+  class UserRole {
+    -createdAt: DATE
+    -updatedAt: DATE
+  }
+
+  class RolePermission {
+    -createdAt
+    -updatedAt
   }
 
   Product "1" *-- "*" InventoryProduct
   Inventory "1" *-- "*" InventoryProduct
+  User "1" *-- "*" UserRole
+  Role "1" *-- "*" UserRole
+  Role "1" *-- "*" RolePermission
+  Permission "1" *-- "*" RolePermission
 ```

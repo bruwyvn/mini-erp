@@ -14,7 +14,7 @@ const Permission = database.define('Permission', {
     unique: true
   },
   description: {
-    type: DataTypes.TEXT
+    type: DataTypes.STRING
   }
 })
 
