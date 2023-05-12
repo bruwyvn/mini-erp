@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const config = require('./config.cjs')
 
-const User = require('./model/user.cjs')
+const User = require('./model')
 
 const middleware = async (request, response, next) => {
   const authHeader = request.headers.authorization
