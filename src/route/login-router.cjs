@@ -1,8 +1,9 @@
-const config = require('./config.cjs')
+const express = require('express')
+const config = require('../config.cjs')
 
-const router = require(express).Router()
+const loginRouter = express.Router()
 
-const loginRouter = router.post('/', async (request, response) => {
+loginRouter.post('/', async (request, response) => {
   const { email, password } = request.body // TODO: Use password hash instead of a plain one
   const user = await User.findOne({ where: { email } })
   if (!user) {

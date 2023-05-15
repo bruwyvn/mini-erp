@@ -1,13 +1,9 @@
 const { DataTypes } = require('sequelize')
 const database = require('../database.cjs')
+const uuidField = require('../util/uuid-field.cjs')
 
 const Handling = database.define('Handling', {
-  uuid: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
-    primaryKey: true
-  },
+  uuid: uuidField,
   type: {
     type: DataTypes.ENUM('INBOUND', 'OUTBOUND'),
     allowNull: false

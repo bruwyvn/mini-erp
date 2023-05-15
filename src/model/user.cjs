@@ -1,20 +1,16 @@
 const { DataTypes } = require('sequelize')
 const database = require('../database.cjs')
+const uuidField = require('../util/uuid-field.cjs')
 
 const User = database.define('User', {
-  uuid: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
-    primaryKey: true
-  },
+  uuid: uuidField,
   user: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true
   },
   email: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false
   }
 })
