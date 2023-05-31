@@ -18,13 +18,14 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.29.3"
   },
   "devDependencies": {
     "chance": "^1.1.11",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-spellcheck": "^0.0.20",
     "eslint-plugin-unicorn": "^47.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
@@ -36,15 +37,7 @@
     "extends": [
       "plugin:unicorn/recommended",
       "prettier"
-    ],
-    "plugins": [
-      "spellcheck"
-    ],
-    "rules": {
-      "spellcheck/spell-checker": [
-        "warn"
-      ]
-    }
+    ]
   },
   "prettier": {
     "semi": false,

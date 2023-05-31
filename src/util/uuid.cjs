@@ -1,10 +1,10 @@
 const { DataTypes } = require('sequelize')
 
-const uuidField = {
+const uuid = {
   type: DataTypes.UUID,
   defaultValue: DataTypes.UUIDV4,
   allowNull: false,
   primaryKey: true
 }
 
-module.exports = uuidField
+module.exports = uuid

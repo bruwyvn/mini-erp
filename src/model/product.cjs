@@ -1,13 +1,10 @@
 const { DataTypes } = require("sequelize");
 const database = require("../database.cjs");
+const uuid = require("../util/uuid.cjs");
+const ProductHandling = require("./product-handling.cjs")
 
 const Product = database.define("Product", {
-  uuid: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
-    primaryKey: true,
-  },
+  id: uuid,
   sku: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -17,5 +14,7 @@ const Product = database.define("Product", {
     type: DataTypes.STRING,
   },
 });
+
+Product.hasMany(ProductHandling)
 
 module.exports = Product;
