@@ -1,6 +1,6 @@
 function createSku(productName) {
   // Remove vowels and convert to uppercase
-  let sku = productName.replace(/[aeiou]/gi, '').toUpperCase()
+  let sku = productName.replaceAll(/[aeiou]/gi, '').toUpperCase()
 
   // Split into words and create array
   let words = sku.split(' ')
@@ -11,11 +11,7 @@ function createSku(productName) {
   }
 
   words = words.map((word) => {
-    if (word.length > 3) {
-      return word.slice(0, 3)
-    } else {
-      return word.padEnd(3, 'X') // Add 'X' to the end to ensure length is 3
-    }
+    return word.length > 3 ? word.slice(0, 3) : word.padEnd(3, 'X')
   })
 
   // Join words with dashes and return

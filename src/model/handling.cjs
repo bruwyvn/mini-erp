@@ -1,9 +1,11 @@
 const { DataTypes } = require('sequelize')
 const database = require('../database.cjs')
-const uuidField = require('../util/uuid-field.cjs')
+const uuid = require('../util/uuid.cjs')
+const ProductHandling = require('./product-handling.cjs')
+const Inventory = require('./inventory.cjs')
 
 const Handling = database.define('Handling', {
-  uuid: uuidField,
+  id: uuid,
   type: {
     type: DataTypes.ENUM('INBOUND', 'OUTBOUND'),
     allowNull: false
@@ -17,5 +19,8 @@ const Handling = database.define('Handling', {
     allowNull: false
   }
 })
+
+Handling.hasMany(ProductHandling)
+Handling.belongsTo(Inventory)
 
 module.exports = Handling

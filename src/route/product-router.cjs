@@ -33,7 +33,7 @@ productRouter.put('/:sku', middleware, async ({ params }, response) => {
   }
 })
 
-productRouter.delete('/:sku', middleware, async ({ params }, response) => {
+productRouter.delete('/:sku', middleware, async ({ params }, response) => { // TODO: Change to "archive"
   const product = await Product.findOne({
     where: {
       sku: params.sku

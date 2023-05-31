@@ -1,11 +1,10 @@
 const { DataTypes } = require('sequelize')
 const database = require('../database.cjs')
-const uuidField = require('../util/uuid-field.cjs')
-
+const uuid = require('../util/uuid.cjs')
 const Product = require('./product.cjs')
 
 const Inventory = database.define('Inventory', {
-  uuid: uuidField,
+  id: uuid,
   name: {
     type: DataTypes.STRING,
     allowNull: false,
