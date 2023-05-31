@@ -1,11 +1,10 @@
 const { DataTypes } = require('sequelize')
 const database = require('../database.cjs')
-const uuidField = require('../util/uuid-field.cjs')
-
+const uuid = require('../util/uuid.cjs')
 const User = require('./user.cjs')
 
 const Role = database.define('Role', {
-  uuid: uuidField,
+  uuid: uuid,
   name: {
     type: DataTypes.STRING,
     allowNull: false,

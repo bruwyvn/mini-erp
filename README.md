@@ -89,7 +89,6 @@ classDiagram
     -name: string
     -description: string
     -location: string
-    +getProducts(): Promise<Product[]>
   }
 
   class Product {
