@@ -1,22 +1,37 @@
-require("dotenv").config();
-const process = require("process");
+require('dotenv').config()
+const process = require('node:process')
 
-const port = process.env.PORT;
-const secretKey = process.env.SECRET_KEY;
-const dbUser = process.env.DB_USER;
-const dbPassword = process.env.DB_PASSWORD;
-const dbName = process.env.DB_NAME;
-const dbDialect = process.env.DB_DIALECT;
-const dbHost = process.env.DB_HOST;
-const dbPort = process.env.DB_PORT;
+const {
+  PORT = 5001,
+  SECRET_KEY = 'defaultSecret',
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+  DB_DIALECT,
+  DB_HOST,
+  DB_PORT
+} = process.env
 
-module.exports = {
-  port,
-  secretKey,
-  dbUser,
-  dbPassword,
-  dbName,
-  dbDialect,
-  dbHost,
-  dbPort,
-};
+if (
+  !DB_USER ||
+  !DB_PASSWORD ||
+  !DB_NAME ||
+  !DB_DIALECT ||
+  !DB_HOST ||
+  !DB_PORT
+) {
+  throw new Error('Missing required environment variables.')
+}
+
+const config = {
+  PORT,
+  SECRET_KEY,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+  DB_DIALECT,
+  DB_HOST,
+  DB_PORT
+}
+
+module.exports = config

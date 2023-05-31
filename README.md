@@ -19,6 +19,24 @@ To install the Mini-ERP application, follow these steps:
 2. Navigate to the project directory in your terminal.
 3. Run `pnpm install` to install the project dependencies.
 
+## Sequelize Dialects
+
+Before you can use Mini-ERP with a specific database dialect, you'll need to install the corresponding Sequelize dialect package globally using pnpm.
+
+For example, if you want to use Mini-ERP with PostgreSQL, you'll need to install the `pg` and `pg-hstore` packages globally:
+
+```
+pnpm install -g pg pg-hstore
+```
+
+If you want to use Mini-ERP with MySQL, you'll need to install the `mysql2` package globally:
+
+```
+pnpm install -g mysql2
+```
+
+For a full list of supported Sequelize dialects and their corresponding packages, see the [Sequelize documentation](https://sequelize.org/).
+
 ## Configuration
 
 Before you can start the Mini-ERP application, you'll need to configure a few things.
@@ -57,7 +75,11 @@ If you want to start the application in development mode, run the following comm
 pnpm run dev
 ```
 
-## Diagrams
+This will start the application with nodemon, which will automatically restart the application whenever you make changes to the code.
+
+## Class Diagram
+
+The following diagram shows the relationship between the Sequelize models:
 
 ```mermaid
 classDiagram
@@ -77,5 +99,46 @@ classDiagram
     -description: string
   }
 
-  Inventory "1" *-- "*" Product : contains
+  class User {
+    <<Model>>
+    -uuid: uuid
+    -user: string
+    -email: string
+  }
+
+  class Role {
+    <<Model>>
+    -uuid: uuid
+    -name: string
+    -description: string
+  }
+
+  class Permission {
+    <<Model>>
+    -uuid: uuid
+    -name: string
+    -description: string
+  }
+
+  class InventoryProduct {
+    -createdAt: DATE
+    -updatedAt: DATE
+  }
+
+  class UserRole {
+    -createdAt: DATE
+    -updatedAt: DATE
+  }
+
+  class RolePermission {
+    -createdAt
+    -updatedAt
+  }
+
+  Product "1" *-- "*" InventoryProduct
+  Inventory "1" *-- "*" InventoryProduct
+  User "1" *-- "*" UserRole
+  Role "1" *-- "*" UserRole
+  Role "1" *-- "*" RolePermission
+  Permission "1" *-- "*" RolePermission
 ```
