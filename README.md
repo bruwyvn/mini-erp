@@ -83,61 +83,54 @@ The following diagram shows the relationship between the Sequelize models:
 
 ```mermaid
 classDiagram
-  class Inventory {
-    <<Model>>
-    -uuid: uuid
-    -name: string
-    -description: string
-    -location: string
-  }
+    class User {
+        +UUID userId
+        +string username
+        +string password
+        +string name
+        +string email
+        // Add additional attributes as needed
+    }
 
-  class Product {
-    <<Model>>
-    -uuid: uuid
-    -sku: string
-    -description: string
-  }
+    class Transaction {
+        +UUID transactionId
+        +Date startTime
+        +Date endTime
+        +User user
+        +Location origin
+        +Location destination
+        +TransactionItem[] transactionItems
+        // Add additional attributes as needed
+    }
 
-  class User {
-    <<Model>>
-    -uuid: uuid
-    -user: string
-    -email: string
-  }
+    class TransactionItem {
+        +UUID transactionItemId
+        +Transaction transaction
+        +Asset asset
+        // Add additional attributes as needed
+    }
 
-  class Role {
-    <<Model>>
-    -uuid: uuid
-    -name: string
-    -description: string
-  }
+    class Asset {
+        +UUID assetId
+        +string name
+        +string description
+        // Add additional attributes as needed
+    }
 
-  class Permission {
-    <<Model>>
-    -uuid: uuid
-    -name: string
-    -description: string
-  }
+    class Location {
+        +UUID locationId
+        +string name
+        +string type
+        // Add additional attributes as needed
+    }
 
-  class InventoryProduct {
-    -createdAt: DATE
-    -updatedAt: DATE
-  }
-
-  class UserRole {
-    -createdAt: DATE
-    -updatedAt: DATE
-  }
-
-  class RolePermission {
-    -createdAt
-    -updatedAt
-  }
-
-  Product "1" *-- "*" InventoryProduct
-  Inventory "1" *-- "*" InventoryProduct
-  User "1" *-- "*" UserRole
-  Role "1" *-- "*" UserRole
-  Role "1" *-- "*" RolePermission
-  Permission "1" *-- "*" RolePermission
+    User "1" -- "0..*" Transaction : creates
+    User "1" -- "0..*" Asset : creates
+    User "1" -- "0..*" Location : creates
+    User "1" -- "0..*" TransactionItem : fulfills
+    User "1" -- "0..*" TransactionItem : recieves
+    Transaction "1" -- "0..*" TransactionItem : includes
+    Transaction "1" -- "1" Location : originates
+    Transaction "1" -- "1" Location : leads
+    TransactionItem "0..*" -- "1" Asset : represents
 ```
