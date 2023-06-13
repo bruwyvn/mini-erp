@@ -1,8 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import database from '../database.js'
 
-import TransactionItem from './transaction-item.js'
-import Location from './location.js'
+import Location from "./location.js"
 
 class Transaction extends Model {}
 
@@ -26,24 +25,7 @@ Transaction.init(
   { sequelize: database }
 )
 
-Transaction.hasMany(TransactionItem)
-
-TransactionItem.belongsTo(Transaction)
-
-Transaction.hasOne(Location, {
-  foreignKey: {
-    name: 'origin',
-    allowNull: true
-  }
-})
-
-Transaction.hasOne(Location, {
-  foreignKey: {
-    name: 'destination',
-    allowNull: true
-  }
-})
-
-Location.belongsTo(Transaction)
+Transaction.belongsTo(Location, { as: 'origin' });
+Transaction.belongsTo(Location, { as: 'destination' });
 
 export default Transaction

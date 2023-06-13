@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize'
-import database from '../database'
+import { DataTypes, Model } from 'sequelize'
+import database from '../database.js'
 
+import Transaction from './transaction.js'
 import Resource from './resource.js'
-import Location from './location.js'
 
 class TransactionItem extends Model {}
 
@@ -18,12 +18,7 @@ TransactionItem.init(
   { sequelize: database }
 )
 
-Resource.hasOne(TransactionItem)
-
-TransactionItem.belongsTo(Resource)
-
-Transaction.hasOne(Location)
-
-Location.belongsTo(Transaction)
+TransactionItem.belongsTo(Transaction, { as: 'transaction' });
+TransactionItem.belongsTo(Resource, { as: 'resource' });
 
 export default TransactionItem

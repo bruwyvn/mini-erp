@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database'
+import database from '../database.js'
 
 class Resource extends Model {}
 

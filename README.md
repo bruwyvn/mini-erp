@@ -106,7 +106,6 @@ classDiagram
         +UUID id
         +Transaction transaction
         +Resource resource
-        +Location location
         // Add additional attributes as needed
     }
 
@@ -133,5 +132,4 @@ classDiagram
     Transaction "1" -- "0..1" Location : originates
     Transaction "1" -- "0..1" Location : leads
     TransactionItem "0..*" -- "1" Resource : represents
-    TransactionItem "1" -- "0..1" Location : resides
 ```
