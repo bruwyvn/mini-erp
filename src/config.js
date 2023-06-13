@@ -1,5 +1,5 @@
-require('dotenv').config()
-const process = require('node:process')
+import 'dotenv/config'
+import { env } from 'node:process'
 
 const {
   PORT = 5001,
@@ -10,7 +10,7 @@ const {
   DB_DIALECT,
   DB_HOST,
   DB_PORT
-} = process.env
+} = env
 
 if (
   !DB_USER ||
@@ -34,4 +34,4 @@ const config = {
   DB_PORT
 }
 
-module.exports = config
+export default config
