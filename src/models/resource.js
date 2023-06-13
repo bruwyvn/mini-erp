@@ -5,7 +5,7 @@ class Resource extends Model {}
 
 Resource.init(
   {
-    resourceId: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,

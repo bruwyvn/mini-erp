@@ -84,14 +84,15 @@ The following diagram shows the relationship between the Sequelize models:
 ```mermaid
 classDiagram
     class Profile {
-        +UUID profileId
+        +UUID id
         +string name
+        +string email
         +string type
         // Add additional attributes as needed
     }
 
     class Transaction {
-        +UUID transactionId
+        +UUID id
         +Date startTime
         +Date endTime
         +Profile profile
@@ -102,7 +103,7 @@ classDiagram
     }
 
     class TransactionItem {
-        +UUID transactionItemId
+        +UUID id
         +Transaction transaction
         +Resource resource
         +Location location
@@ -110,14 +111,14 @@ classDiagram
     }
 
     class Resource {
-        +UUID resourceId
+        +UUID id
         +string name
         +string description
         // Add additional attributes as needed
     }
 
     class Location {
-        +UUID locationId
+        +UUID id
         +string name
         +string type
         // Add additional attributes as needed

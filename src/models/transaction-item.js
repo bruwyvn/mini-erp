@@ -8,7 +8,7 @@ class TransactionItem extends Model {}
 
 TransactionItem.init(
   {
-    transactionItemId: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,

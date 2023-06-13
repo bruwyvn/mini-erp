@@ -1,23 +1,29 @@
 import { Router } from 'express'
+import { Op } from 'sequelize'
+import config from './config.js'
 // import middleware from './middleware.js'
 
 import Profile from './models/profile.js'
 
 const router = new Router()
 
-router.use('/auth', async (request, response) => {
-  const { email, password } = request.body // TODO: Use password hash instead of a plain one
-  const profile = await Profile.findOne({ where: { email } })
+router.use('/authenticate', async (request, response) => {
+  const { login, password } = request.body
+  const profile = await Profile.findOne({
+    where: {
+      [Op.or]: [{ name: login }, { email: login }]
+    }
+  })
   if (!profile) {
-    return response.status(401).json({ error: 'Invalid email or password' })
+    return response.status(401).json({ error: 'Invalid login or password' })
   }
 
   // TODO: Decode password hash logic
   if (profile.password !== password) {
-    return response.status(401).json({ error: 'Invalid email or password' })
+    return response.status(401).json({ error: 'Invalid login or password' })
   }
 
-  const token = jwt.sign({ profileId: profile.profileId }, config.SECRET_KEY, {
+  const token = jwt.sign({ id: profile.id }, config.SECRET_KEY, {
     expiresIn: 1800
   })
   response.json({ token })
