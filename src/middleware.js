@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken')
-const config = require('./config.cjs')
+import { verify } from 'jsonwebtoken'
+import config from './config.js'
 
-const User = require('./model/user.cjs')
+import Profile from './models/profile.js'
 
 const middleware = async (request, response, next) => {
   const authHeader = request.headers.authorization
@@ -10,19 +10,19 @@ const middleware = async (request, response, next) => {
   }
   const token = authHeader.split(' ')[1]
   try {
-    const decodedToken = jwt.verify(token, config.SECRET_KEY)
-    const user = await User.findByPk(decodedToken.uuid, {
+    const decodedToken = verify(token, config.SECRET_KEY)
+    const profile = await Profile.findByPk(decodedToken.profileId, {
       include: [{ model: Role, include: [Permission] }]
     })
-    if (!user) {
-      return response.status(401).json({ error: 'User not found' })
+    if (!profile) {
+      return response.status(401).json({ error: 'Profile not found' })
     }
 
-    request.user = user
+    request.profile = profile
     next()
   } catch {
     return response.status(401).json({ error: 'Invalid token' })
   }
 }
 
-module.exports = middleware
+export default middleware
