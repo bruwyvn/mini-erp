@@ -83,12 +83,10 @@ The following diagram shows the relationship between the Sequelize models:
 
 ```mermaid
 classDiagram
-    class User {
-        +UUID userId
-        +string username
-        +string password
+    class Profile {
+        +UUID profileId
         +string name
-        +string email
+        +string type
         // Add additional attributes as needed
     }
 
@@ -96,7 +94,7 @@ classDiagram
         +UUID transactionId
         +Date startTime
         +Date endTime
-        +User user
+        +Profile profile
         +Location origin
         +Location destination
         +TransactionItem[] transactionItems
@@ -106,12 +104,13 @@ classDiagram
     class TransactionItem {
         +UUID transactionItemId
         +Transaction transaction
-        +Asset asset
+        +Resource resource
+        +Location location
         // Add additional attributes as needed
     }
 
-    class Asset {
-        +UUID assetId
+    class Resource {
+        +UUID resourceId
         +string name
         +string description
         // Add additional attributes as needed
@@ -124,14 +123,14 @@ classDiagram
         // Add additional attributes as needed
     }
 
-    User "1" -- "0..*" Transaction : creates
-    User "1" -- "0..*" Asset : creates
-    User "1" -- "0..*" Location : creates
-    User "1" -- "0..*" TransactionItem : fulfills
-    User "1" -- "0..*" TransactionItem : recieves
+    Profile "1" -- "0..*" Transaction : creates
+    Profile "1" -- "0..*" Resource : creates
+    Profile "1" -- "0..*" Location : creates
+    Profile "1" -- "0..*" TransactionItem : fulfills
+    Profile "1" -- "0..*" TransactionItem : recieves
     Transaction "1" -- "0..*" TransactionItem : includes
     Transaction "1" -- "0..1" Location : originates
     Transaction "1" -- "0..1" Location : leads
-    TransactionItem "0..*" -- "1" Asset : represents
+    TransactionItem "0..*" -- "1" Resource : represents
     TransactionItem "1" -- "0..1" Location : resides
 ```

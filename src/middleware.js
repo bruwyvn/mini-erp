@@ -11,9 +11,10 @@ const middleware = async (request, response, next) => {
   const token = authHeader.split(' ')[1]
   try {
     const decodedToken = verify(token, config.SECRET_KEY)
-    const profile = await Profile.findByPk(decodedToken.profileId, {
-      include: [{ model: Role, include: [Permission] }]
-    })
+    // const profile = await Profile.findByPk(decodedToken.profileId, {
+    //   include: [{ model: Role, include: [Permission] }]
+    // })
+    const profile = await Profile.findByPk(decodedToken.profileId)
     if (!profile) {
       return response.status(401).json({ error: 'Profile not found' })
     }

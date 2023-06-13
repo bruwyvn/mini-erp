@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import middleware from './middleware.js'
+// import middleware from './middleware.js'
 
 import Profile from './models/profile.js'
 
@@ -23,18 +23,18 @@ router.use('/auth', async (request, response) => {
   response.json({ token })
 })
 
-router.get('/protected', middleware, async ({ profile }, response) => {
-  const hasPermission = profile.Roles.some((role) =>
-    role.Permissions.some(
-      (permission) => permission.name === 'access_protected'
-    )
-  )
-  if (!hasPermission) {
-    return response.status(403).json({ error: 'Unauthorized' })
-  }
-  response.json({
-    message: 'You have access to the protected endpoint'
-  })
-})
+// router.get('/protected', middleware, async ({ profile }, response) => {
+//   const hasPermission = profile.Roles.some((role) =>
+//     role.Permissions.some(
+//       (permission) => permission.name === 'access_protected'
+//     )
+//   )
+//   if (!hasPermission) {
+//     return response.status(403).json({ error: 'Unauthorized' })
+//   }
+//   response.json({
+//     message: 'You have access to the protected endpoint'
+//   })
+// })
 
 export default router
