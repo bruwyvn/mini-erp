@@ -130,7 +130,8 @@ classDiagram
     User "1" -- "0..*" TransactionItem : fulfills
     User "1" -- "0..*" TransactionItem : recieves
     Transaction "1" -- "0..*" TransactionItem : includes
-    Transaction "1" -- "1" Location : originates
-    Transaction "1" -- "1" Location : leads
+    Transaction "1" -- "0..1" Location : originates
+    Transaction "1" -- "0..1" Location : leads
     TransactionItem "0..*" -- "1" Asset : represents
+    TransactionItem "1" -- "0..1" Location : resides
 ```
