@@ -26,7 +26,7 @@ Profile.init(
       allowNull: false
     }
   },
-  { sequelize: database }
+  { sequelize: database, paranoid: true }
 )
 
 export default Profile

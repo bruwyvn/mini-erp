@@ -91,20 +91,20 @@ classDiagram
         // Add additional attributes as needed
     }
 
-    class Transaction {
+    class Movement {
         +UUID id
         +Date startTime
         +Date endTime
         +Profile profile
         +Location origin
         +Location destination
-        +TransactionItem[] transactionItems
+        +MovementItem[] movementItems
         // Add additional attributes as needed
     }
 
-    class TransactionItem {
+    class MovementItem {
         +UUID id
-        +Transaction transaction
+        +Movement movement
         +Resource resource
         // Add additional attributes as needed
     }
@@ -123,13 +123,13 @@ classDiagram
         // Add additional attributes as needed
     }
 
-    Profile "1" -- "0..*" Transaction : creates
+    Profile "1" -- "0..*" Movement : creates
     Profile "1" -- "0..*" Resource : creates
     Profile "1" -- "0..*" Location : creates
-    Profile "1" -- "0..*" TransactionItem : fulfills
-    Profile "1" -- "0..*" TransactionItem : recieves
-    Transaction "1" -- "0..*" TransactionItem : includes
-    Transaction "1" -- "0..1" Location : originates
-    Transaction "1" -- "0..1" Location : leads
-    TransactionItem "0..*" -- "1" Resource : represents
+    Profile "1" -- "0..*" MovementItem : fulfills
+    Profile "1" -- "0..*" MovementItem : recieves
+    Movement "1" -- "0..*" MovementItem : includes
+    Movement "1" -- "0..1" Location : originates
+    Movement "1" -- "0..1" Location : leads
+    MovementItem "0..*" -- "1" Resource : represents
 ```

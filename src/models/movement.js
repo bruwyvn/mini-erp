@@ -3,9 +3,9 @@ import database from '../database.js'
 
 import Location from "./location.js"
 
-class Transaction extends Model {}
+class Movement extends Model {}
 
-Transaction.init(
+Movement.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -22,10 +22,10 @@ Transaction.init(
       allowNull: false
     }
   },
-  { sequelize: database }
+  { sequelize: database, paranoid: true }
 )
 
-Transaction.belongsTo(Location, { as: 'origin' });
-Transaction.belongsTo(Location, { as: 'destination' });
+Movement.belongsTo(Location, { as: 'origin' });
+Movement.belongsTo(Location, { as: 'destination' });
 
-export default Transaction
+export default Movement
