@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database.js'
+import store from '../store.js'
 
 class Location extends Model {}
 
@@ -21,7 +21,7 @@ Location.init(
       allowNull: false
     }
   },
-  { sequelize: database, paranoid: true }
+  { sequelize: store, paranoid: true }
 )
 
 export default Location

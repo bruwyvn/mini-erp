@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database.js'
+import store from '../store.js'
 
 class Resource extends Model {}
 
@@ -20,7 +20,7 @@ Resource.init(
       type: DataTypes.STRING
     }
   },
-  { sequelize: database }
+  { sequelize: store }
 )
 
 export default Resource

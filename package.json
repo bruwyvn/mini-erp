@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./src/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon ./src/index.js",
+    "start": "NODE_ENV=production node ./src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon -r dotenv/config ./src/index.js",
     "format": "pnpm run-script prettier --write",
     "lint": "eslint --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --ignore-unknown \"!**/pnpm-lock.yaml\"",
@@ -15,8 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.10.0",
@@ -25,6 +23,8 @@
   },
   "devDependencies": {
     "chance": "^1.1.11",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-unicorn": "^47.0.0",

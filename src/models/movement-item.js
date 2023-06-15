@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database.js'
+import store from '../store.js'
 
 import Movement from './movement.js'
 import Resource from './resource.js'
@@ -16,7 +16,7 @@ MovementItem.init(
       primaryKey: true
     }
   },
-  { sequelize: database, paranoid: true }
+  { sequelize: store, paranoid: true }
 )
 
 MovementItem.belongsTo(Movement, { as: 'movement' })

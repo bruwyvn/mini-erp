@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database.js'
+import store from '../store.js'
 
 class Profile extends Model {}
 
@@ -26,7 +26,7 @@ Profile.init(
       allowNull: false
     }
   },
-  { sequelize: database, paranoid: true }
+  { sequelize: store, paranoid: true }
 )
 
 export default Profile

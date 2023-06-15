@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { env } from 'node:process'
 
 const {

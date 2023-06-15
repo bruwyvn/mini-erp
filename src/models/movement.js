@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database.js'
+import store from '../store.js'
 
 import Location from "./location.js"
 
@@ -22,7 +22,7 @@ Movement.init(
       allowNull: false
     }
   },
-  { sequelize: database, paranoid: true }
+  { sequelize: store, paranoid: true }
 )
 
 Movement.belongsTo(Location, { as: 'origin' });
