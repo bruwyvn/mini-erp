@@ -83,55 +83,55 @@ The following diagram shows the relationship between the Sequelize models:
 
 ```mermaid
 classDiagram
-    class User {
-        +UUID userId
-        +string username
-        +string password
+    class Profile {
+        +UUID id
         +string name
         +string email
+        +string type
         // Add additional attributes as needed
     }
 
-    class Transaction {
-        +UUID transactionId
+    class Movement {
+        +UUID id
         +Date startTime
         +Date endTime
-        +User user
+        +Profile profile
         +Location origin
         +Location destination
-        +TransactionItem[] transactionItems
+        +MovementItem[] movementItems
         // Add additional attributes as needed
     }
 
-    class TransactionItem {
-        +UUID transactionItemId
-        +Transaction transaction
-        +Asset asset
+    class MovementItem {
+        +UUID id
+        +Movement movement
+        +Resource resource
+        +Location location
         // Add additional attributes as needed
     }
 
-    class Asset {
-        +UUID assetId
+    class Resource {
+        +UUID id
         +string name
         +string description
         // Add additional attributes as needed
     }
 
     class Location {
-        +UUID locationId
+        +UUID id
         +string name
         +string type
         // Add additional attributes as needed
     }
 
-    User "1" -- "0..*" Transaction : creates
-    User "1" -- "0..*" Asset : creates
-    User "1" -- "0..*" Location : creates
-    User "1" -- "0..*" TransactionItem : fulfills
-    User "1" -- "0..*" TransactionItem : recieves
-    Transaction "1" -- "0..*" TransactionItem : includes
-    Transaction "1" -- "0..1" Location : originates
-    Transaction "1" -- "0..1" Location : leads
-    TransactionItem "0..*" -- "1" Asset : represents
-    TransactionItem "1" -- "0..1" Location : resides
+    Profile "1" -- "0..*" Movement : creates
+    Profile "1" -- "0..*" Resource : creates
+    Profile "1" -- "0..*" Location : creates
+    Profile "1" -- "0..*" MovementItem : fulfills
+    Profile "1" -- "0..*" MovementItem : recieves
+    Movement "1" -- "0..*" MovementItem : includes
+    Movement "1" -- "0..1" Location : originates
+    Movement "1" -- "0..1" Location : leads
+    MovementItem "0..*" -- "1" Location : resides
+    MovementItem "0..*" -- "1" Resource : represents
 ```

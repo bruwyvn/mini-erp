@@ -1,12 +1,12 @@
 import express from 'express'
-import database from './database.js'
+import store from './store.js'
 import router from './router.js'
 import config from './config.js'
 
 const app = express()
 
 ;(async () => {
-  await database.sync({ alter: true })
+  await store.sync({ alter: true })
 })()
 
 app.use(express.json())

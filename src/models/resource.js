@@ -1,11 +1,11 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database'
+import store from '../store.js'
 
 class Resource extends Model {}
 
 Resource.init(
   {
-    resourceId: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
@@ -20,7 +20,7 @@ Resource.init(
       type: DataTypes.STRING
     }
   },
-  { sequelize: database }
+  { sequelize: store }
 )
 
 export default Resource
