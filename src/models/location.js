@@ -1,11 +1,11 @@
 import { DataTypes, Model } from 'sequelize'
-import database from '../database'
+import store from '../store.js'
 
 class Location extends Model {}
 
 Location.init(
   {
-    locationId: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
@@ -21,7 +21,7 @@ Location.init(
       allowNull: false
     }
   },
-  { sequelize: database }
+  { sequelize: store, paranoid: true }
 )
 
 export default Location

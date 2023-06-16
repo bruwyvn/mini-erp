@@ -10,10 +10,10 @@ const {
   DB_PORT
 } = config
 
-const database = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+const store = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   dialect: DB_DIALECT,
   host: DB_HOST,
   port: DB_PORT
 })
 
-export default database
+export default store
