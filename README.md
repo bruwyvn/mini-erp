@@ -106,6 +106,7 @@ classDiagram
         +UUID id
         +Movement movement
         +Resource resource
+        +Location location
         // Add additional attributes as needed
     }
 
@@ -131,5 +132,6 @@ classDiagram
     Movement "1" -- "0..*" MovementItem : includes
     Movement "1" -- "0..1" Location : originates
     Movement "1" -- "0..1" Location : leads
+    MovementItem "0..*" -- "1" Location : resides
     MovementItem "0..*" -- "1" Resource : represents
 ```

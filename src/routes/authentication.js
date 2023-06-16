@@ -8,11 +8,9 @@ import Profile from '../models/profile.js'
 const authentication = new Router()
 
 authentication.post('/', async (request, response) => {
-  const { login, password } = request.body
-
   const profile = await Profile.findOne({
     where: {
-      [Op.or]: [{ name: login }, { email: login }]
+      [Op.or]: [{ name: request.login }, { email: request.login }]
     }
   })
 
@@ -20,8 +18,16 @@ authentication.post('/', async (request, response) => {
     return response.status(401).json({ error: 'Invalid login or password' })
   }
 
-  // TODO: Decode password hash logic
-  if (profile.password !== password) {
+  // TODO: Define utils architecture and move to function on it.
+  const encoder = new TextEncoder()
+  const data = encoder.encode(body.password)
+  const hashBuffer = await crypto.subtle.digest(config.HASH_ALGORITHM, data)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  const hash = hashArray
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('')
+
+  if (profile.password !== hash) {
     return response.status(401).json({ error: 'Invalid login or password' })
   }
 

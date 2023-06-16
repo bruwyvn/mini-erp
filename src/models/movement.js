@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import store from '../store.js'
 
 import Location from "./location.js"
+import MovementItem from "./movement-item.js"
 
 class Movement extends Model {}
 
@@ -27,5 +28,6 @@ Movement.init(
 
 Movement.belongsTo(Location, { as: 'origin' });
 Movement.belongsTo(Location, { as: 'destination' });
+Movement.hasMany(MovementItem)
 
 export default Movement

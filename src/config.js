@@ -8,7 +8,8 @@ const {
   DB_NAME,
   DB_DIALECT,
   DB_HOST,
-  DB_PORT
+  DB_PORT,
+  HASH_ALGORITHM = 'SHA-512'
 } = env
 
 if (
@@ -30,7 +31,8 @@ const config = {
   DB_NAME,
   DB_DIALECT,
   DB_HOST,
-  DB_PORT
+  DB_PORT,
+  HASH_ALGORITHM
 }
 
 export default config
