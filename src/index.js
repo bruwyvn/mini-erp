@@ -5,10 +5,6 @@ import config from './config.js'
 
 const app = express()
 
-;(async () => {
-  await store.sync({ alter: true })
-})()
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
@@ -17,3 +13,5 @@ app.use('/', router)
 app.listen(config.PORT, () => {
   console.log(`Listening on port ${config.PORT}`)
 })
+
+await store.sync({ alter: true })

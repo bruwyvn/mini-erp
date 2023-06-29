@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize'
 import store from '../store.js'
 
-import Location from "./location.js"
-import MovementItem from "./movement-item.js"
+import Location from './location.js'
+import Transaction from './transaction.js'
 
 class Movement extends Model {}
 
@@ -26,8 +26,8 @@ Movement.init(
   { sequelize: store, paranoid: true }
 )
 
-Movement.belongsTo(Location, { as: 'origin' });
-Movement.belongsTo(Location, { as: 'destination' });
-Movement.hasMany(MovementItem)
+Movement.belongsTo(Location, { as: 'origin' })
+Movement.belongsTo(Location, { as: 'destination' })
+Transaction.belongsTo(Movement, { as: 'movement' })
 
 export default Movement

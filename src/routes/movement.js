@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import Movement from './models/movement.js'
+import Movement from '../models/movement.js'
 import MovementItem from '../models/movement-item.js'
 
 const routes = new Router()
